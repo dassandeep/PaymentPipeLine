@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using PipeLineWebApplication.KafkaRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,10 @@ namespace PipeLineWebApplication
         {
 
             services.AddControllers();
+            services.Configure<PaymentKafkaSettings>(Configuration.GetSection(nameof(PaymentKafkaSettings)));
+
+            services.AddSingleton<IPaymentKafkaSettings>(sp =>
+                sp.GetRequiredService<IOptions<PaymentKafkaSettings>>().Value);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
