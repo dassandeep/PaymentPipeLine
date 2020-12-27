@@ -29,9 +29,13 @@ namespace PipeLineWebApplication.Controllers
             ////////////////////////////////////////////////////
             // Request Log
             ///////////////////////////////////////////////////
+            ///
+
 
             KafkaUtil.PushMessage(_paymentKafkaSettings.ConnectionString, "TestMessage", _paymentKafkaSettings.TopicName);
 
         }
     }
 }
+/// https://nielsberglund.com/2019/06/18/confluent-platform--kafka-for-a-.net-developer-on-windows/
+/// https://medium.com/@shesh.soft/confluent-kafka-integration-with-net-core-2a489fa2512
